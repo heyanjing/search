@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 测试环境配置 -->
+<!-- 注意：当替换的内容出现XML特殊字符时，请使用<![CDATA[...]]> -->
+<!-- 注意：值内容尽量不要换行 -->
+<portable-config>
+    <config-file path="WEB-INF/classes/config/config.properties">
+        <replace key="app.debug">true</replace>
+        <replace key="upload.file.server.name">nodedev</replace>
+    </config-file>
+</portable-config>

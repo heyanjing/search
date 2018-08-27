@@ -1,0 +1,67 @@
+/* CSS Document */
+*{margin:0; padding:0;}
+html{height:100%;}
+body{font-size:12px; font-family:"宋体","微软雅黑"; width:100%; height:100%; overflow:hidden;}
+a{text-decoration:none;}
+a, a:hover , a:link {text-decoration: none;}
+img{border:none;}
+ul,li{list-style:none;}
+ul, ol{margin-bottom:0;}
+
+.imgWrap{position:relative; z-index:2; width:100px; height:100px; line-height:100px; vertical-align: middle; overflow:hidden;}
+.file-panel{background:rgba(0,0,0,0.5); position:absolute;width:100px; top:0; left:0; overflow:hidden; z-index:300;}
+.file-panel span i{font-size:18px; display:inline; float:right; color:#ffffff; margin:5px; cursor: pointer;}
+
+.mini-fit{position:absolute; height:auto;top:50px;bottom:0; overflow:auto; width:100%;}
+.mini-fitbox{position:absolute;height:auto; top:51px; bottom:58px; width:100%; overflow:auto;}
+.mini-fitmenu{position:absolute; height:auto;top:30px;bottom:0; width:100%;}
+.mini-fitmenu.menuscroll{overflow:auto;}
+
+/*按钮公用样式*/
+.del{background-color:#E25A59; border-color:#E25A59; padding:5px 10px; color:#fff;}
+.del:hover{background-color:#d43f3a; border-color:#c9302c; color:#fff;}
+.btn-enable{background-color:#5bc0de; border-color:#5bc0de; padding:5px 10px; color:#fff;}
+.btn-enable:hover{background-color:#52b3d0; border-color:#52b3d0;color:#fff;}
+.btn-disable{background-color:#999; border-color:#999; padding:5px 10px; color:#fff;}
+.btn-disable:hover{background-color:#a3a3a3; border-color:#a3a3a3;color:#fff;}
+.edit{background-color:#43B5AD; border-color:#43B5AD; padding:5px 10px; color:#fff;}
+.edit:hover{background-color:#399b94; border-color:#449d44; color:#fff;}
+.view{background-color:#1fa7da; border-color:#1fa7da; padding:5px 10px; color:#fff;}
+.view:hover{background-color:#42b7e3; border-color:#42b7e3; color:#fff;}
+.org-btn {bottom:0; position:absolute; left:0; right:0; margin:0 auto;}
+.org-save{width:80px; height:30px; background:#5cb85c; border:#4cae4c; color:#fff; border-radius:5px; margin:10px; cursor: pointer;}
+.org-save:hover{background:#449d44; border:#398439; color:#fff;}
+.org-close{width:80px; height:30px; background:#337ab7; border:#2e6da4; color:#fff; border-radius:5px; margin:10px; cursor: pointer;}
+.org-close:hover{background:#286090; border:#204d74; color:#fff;}
+.org-search{background:#d1ecf1; border:#bee5eb; width:80px; height:30px; color:#0c5460; border-radius:5px;cursor: pointer; margin-left:10px;}
+.org-search:hover{background:#8acfdb; border:#65c2cf;}
+.org-back{background:#ff8040; border:1px solid #ff9460;width:80px; height:30px; color:#fff; border-radius:5px;cursor: pointer; margin:10px;}
+.org-back:hover{background:#ff6317;}
+.org-intermediarys{background:#0071b2; padding:5px 10px; color:#fff;}
+.org-intermediarys:hover{background:#008add; color:#fff;}
+.search-button{font-size:14px; font-family: "宋体";}
+
+/*展开查询样式*/
+.develop{width:100%; height:auto; background:#fff; border-bottom:1px #ccc solid; padding:5px; }
+.develop tr td label{padding-left:10px;}
+
+/*错误页面样式*/
+.error-404{width:100%; background: repeating-radial-gradient(#ffffff, #e4f4ff); height:100%; margin:0 auto; text-align:center;}
+.error-404-contant{position:fixed;left:30%;top:30%;}
+.error-404-contant p{font-size:24px; font-family: "微软雅黑"; color:#e5f3fc; margin-top:20px; font-weight:bolder;}
+.error-404-contant button{margin-top:20px; width:100px; height:40px; cursor:pointer; line-height:40px; background:#0076ca; color:#fff; border:none; border-radius:5px; font-size:14px;}
+.error-404-contant button:hover{background:#0087ea;}
+
+.error-500{width:100%; background: repeating-radial-gradient(#ffffff, #e4f4ff); height:100%; margin:0 auto; text-align:center;}
+.error-500-contant{position:fixed;left:30%;top:30%;}
+.error-500-contant p{font-size:24px; font-family: "微软雅黑"; color:#e5f3fc; margin-top:20px; font-weight:bolder;}
+.error-500-contant button{margin-top:20px; width:100px; height:40px; cursor:pointer; line-height:40px; background:#0076ca; color:#fff; border:none; border-radius:5px; font-size:14px;}
+.error-500-contant button:hover{background:#0087ea;}
+
+.error-403{width:100%; background: repeating-radial-gradient(#ffffff, #e4f4ff); height:100%; margin:0 auto; text-align:center;}
+.error-403-contant{position:fixed;left:35%;top:30%;}
+.error-403-contant p{font-size:24px; font-family: "微软雅黑"; color:#e5f3fc; margin-top:20px; font-weight:bolder;}
+
+
+
+

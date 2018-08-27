@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!--凭证匹配器 -->
+    <bean id="credentialsMatcher" class="com.search.cap.main.shiro.credentials.RetryLimitHashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="SHA-512"/>
+        <property name="hashIterations" value="2"/>
+        <property name="storedCredentialsHexEncoded" value="true"/>
+        <property name="customRedisCacheManager" ref="customRedisCacheManager"/>
+    </bean>
+
+
+    <!--redis-->
+    <bean id="customRedisSessionDao" class="com.search.cap.main.shiro.redis.CustomRedisSessionDao">
+        <property name="redisTemplate" ref="redisTemplate"/>
+        <!-- <property name="activeSessionsCacheName" value="shiroSessionCache"/>-->
+    </bean>
+    <!---->
+    <bean id="customRedisCacheManager" class="com.search.cap.main.shiro.redis.cache.CustomRedisCacheManager"/>
+
+
+    <!-- 会话验证调度器  用于定期的验证会话是否已过期，如果过期将停止会话； -->
+    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
+        <property name="sessionValidationInterval" value="${shiro.session.validate.time}"/>
+        <property name="sessionManager" ref="sessionManager"/>
+    </bean>
+    <!-- 会话Cookie模板 -->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="${shiro.cookie.session.timeout}"/>
+    </bean>
+    <!--  记住我功能，当关闭浏览器下次再访问的时候不需要登录也能查看。只对filterChainDefinitions设置为user级别的链接有效， 类似于淘宝看商品、添加购物车，不需要验证是否登录。但是提交订单就必须登录。 -->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rme"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="${shiro.cookie.remenberme.timeout}"/><!-- 30天 -->
+    </bean>
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cookie" ref="rememberMeCookie"/>
+        <!-- aes key。shiro默认的key是不安全的,可以使用工程utils包的GenerateAESKey生成一个自定义的key-->
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('Kyjwds5ZLEBUhA4a9O1DhQ==')}"/>
+    </bean>
+    <!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="globalSessionTimeout" value="${shiro.session.timeout}"/>
+        <property name="deleteInvalidSessions" value="true"/>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        <property name="sessionDAO" ref="customRedisSessionDao"/>
+        <property name="sessionIdCookieEnabled" value="true"/>
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+    </bean>
+
+    <!--shiro realm-->
+    <bean id="shiroRealm" class="com.search.cap.main.shiro.realm.ShiroRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+        <property name="customRedisCacheManager" ref="userNameCache"/>
+    </bean>
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroRealm"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="cacheManager" ref="customRedisCacheManager"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+
+    <bean id="kickoutSessionControlFilter" class="com.search.cap.main.shiro.filter.KickoutSessionControlFilter">
+        <property name="cacheManager" ref="kickoutCache"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="kickoutAfter" value="${shiro.kickout.after}"/>
+        <property name="maxSession" value="${shiro.max.session}"/>
+        <property name="kickoutUrl" value="/"/>
+    </bean>
+    <bean id="ajaxFormAuthenticationFilter" class="com.search.cap.main.shiro.filter.AjaxFormAuthenticationFilter"/>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!--要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面-->
+        <property name="loginUrl" value="/"/>
+        <!--访问未授权的路径时跳转的页面-->
+        <property name="unauthorizedUrl" value="/error/403"/>
+        <property name="filters">
+            <util:map>
+                <entry key="kickout" value-ref="kickoutSessionControlFilter"/>
+                <entry key="ajaxAuthc" value-ref="ajaxFormAuthenticationFilter"/>
+            </util:map>
+        </property>
+        <!--
+        配置那些路径需要那些权限 ,依次匹配，匹配成功就不会再匹配
+        anon    可以匿名访问
+        authc   必须认证后在访问（登陆） 就算rememberMe存在也会跳转至登陆页面
+        logout  注销,会自动清除shiro的缓存
+        -->
+        <property name="filterChainDefinitions">
+            <value>
+                /api/**=anon
+                /file/**=anon
+                /alltypes/**=anon
+                /demo/**=anon
+                /ws/**=anon
+                /=anon
+                /login=anon
+                /qr=anon
+                /sendPhoneVcode=anon
+                /logout=logout
+                /orgs/grorg=anon
+                /orgs/gorgqua=anon
+                /orgs/gorgs=anon
+                /orgs/gporgs=anon
+                /orgs/grorgs=anon
+                /orgs/getorgs=anon
+                /orgs/ggo=anon
+                /orgs/uorg=anon
+                /orgs/qorgs=anon
+                /orgs/org=anon
+                /user/phone=anon
+                /user/isCode=anon
+                /dictionaries/getDictionariesList=anon
+                /user/findListMapDictionariesByItype=anon
+                /user/getAddUserPage=anon
+                /wopi/**=anon
+                /upload/**=anon
+                /search/user=anon
+                /user/findListMapDictionariesByItype=anon
+                /user/save=anon
+                /common/**=anon
+                /home/**=anon
+                /jsp/**=anon
+                /wsendpoint/**=anon
+                /ws/**=anon
+                <!--/ueditor/**=anon-->
+                /**=authc,kickout,ajaxAuthc
+                <!--/**=anon-->
+
+            </value>
+        </property>
+    </bean>
+
+    <bean id="kickoutCache" class="com.search.cap.main.shiro.redis.cache.CustomRedisCacheManager">
+        <property name="expire" value="${cache.kickout.timeout}"/>
+    </bean>
+    <bean id="phoneVcodeCache" class="com.search.cap.main.shiro.redis.cache.CustomRedisCacheManager">
+        <property name="expire" value="${cache.phone.vcode.timeout}"/><!--3分钟-->
+    </bean>
+    <bean id="qrVcodeCache" class="com.search.cap.main.shiro.redis.cache.CustomRedisCacheManager">
+        <property name="expire" value="${cache.phone.vcode.timeout}"/><!--3分钟-->
+    </bean>
+    <bean id="userNameCache" class="com.search.cap.main.shiro.redis.cache.CustomRedisCacheManager">
+        <property name="expire" value="${cache.user.name.timeout}"/><!--1小时-->
+    </bean>
+    <bean id="emailVcodeCache" class="com.search.cap.main.shiro.redis.cache.CustomRedisCacheManager">
+        <property name="expire" value="${cache.email.vcode.timeout}"/><!--3分钟-->
+    </bean>
+    <bean id="fileCheckCache" class="com.search.cap.main.shiro.redis.cache.CustomRedisCacheManager">
+        <property name="expire" value="-1"/><!--永不过期-->
+    </bean>
+</beans>

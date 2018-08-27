@@ -1,0 +1,10 @@
+/* CSS Document */
+*{margin:0; padding:0;}
+html{height:100%;}
+body{font-size:12px; font-family:"宋体","微软雅黑"; width:100%; height:100%;}
+a{ text-decoration:none;}
+img{ border:none;}
+ul,li{ list-style:none;}
+
+.wrap{background:url(../../img/login/sign-bg.jpg);box-sizing: border-box;height: 100%;width:100%;background-size:100% 100%;position:  relative;filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";}
+

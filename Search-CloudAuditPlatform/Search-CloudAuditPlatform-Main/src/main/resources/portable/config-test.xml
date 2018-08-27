@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 测试环境配置 -->
+<!-- 注意：当替换的内容出现XML特殊字符时，请使用<![CDATA[...]]> -->
+<!-- 注意：值内容尽量不要换行 -->
+<portable-config>
+    <config-file path="WEB-INF/classes/config/config.properties">
+        <replace key="app.debug">false</replace>
+        <!--nginx配置-->
+        <replace key="nginx.service.mode.single">false</replace>
+        <replace key="nginx.intranet.write">true</replace>
+        <replace key="nginx.intranet.ip">192.168.70.110</replace>
+        <replace key="nginx.intranet.domain"><![CDATA[nginx.search.com]]></replace>
+        <replace key="nginx.host.path">C:\\Windows\\System32\\drivers\\etc</replace>
+        <replace key="nginx.host.name">HOSTS</replace>
+        <!--oracal数据库配置-->
+        <replace key="jdbc.user">pdbadmin</replace>
+        <replace key="jdbc.password">dbsa123</replace>
+        <replace key="jdbc.url"><![CDATA[jdbc:log4jdbc:oracle:thin:@//192.168.1.213:1521/pdbcapdb]]></replace>
+        <!--HikariDataSource连接池配置-->
+        <replace key="jdbc.connection.timeout">30000</replace>
+        <replace key="jdbc.idle.timeout">600000</replace>
+        <replace key="jdbc.max.life.time">1800000</replace>
+        <replace key="jdbc.maximum.pool.size">15</replace>
+        <replace key="jdbc.minimum.idle">5</replace>
+        <!--redis配置配置 JedisPoolConfig-->
+        <replace key="redis.max.total">1024</replace>
+        <replace key="redis.max.idle">20</replace>
+        <replace key="redis.max.wait.millis">100000</replace>
+        <replace key="redis.test.on.borrow">true</replace>
+        <!--redis配置配置 JedisConnectionFactory-->
+        <replace key="redis.host">192.168.1.213</replace>
+        <replace key="redis.port">6379</replace>
+        <replace key="redis.timeout">15000</replace>
+        <replace key="redis.database">15</replace>
+        <replace key="redis.use.pool">true</replace>
+        <replace key="redis.password">searchaudit</replace>
+        <!--hibernate配置-->
+        <replace key="hibernate.hbm2ddl.auto">none</replace>
+        <!--操作日志表生成时间配置-->
+        <replace key="log.table.create">0 0 23 28-31 * ?</replace>
+        <!--生成用户名允许的循环次数-->
+        <replace key="user.name.time">5</replace>
+        <!--文件上传配置-->
+        <replace key="upload.file.network.root">/upload</replace>
+        <replace key="upload.file.root">D:\\upload</replace>
+        <replace key="upload.file.temp">D:\\upload\\temp</replace>
+        <replace key="upload.file.max.size">10737418240</replace>
+        <replace key="upload.file.max.request.size">21474836480</replace>
+        <replace key="upload.file.server.name">nodetest</replace>
+        <!--#shiro+缓存 配置-->
+        <replace key="shiro.session.validate.time">600000</replace>
+        <replace key="shiro.cookie.session.timeout">-1</replace>
+        <replace key="shiro.cookie.remenberme.timeout">2592000</replace>
+        <replace key="shiro.session.timeout">86400000</replace>
+        <replace key="shiro.kickout.after">false</replace>
+        <replace key="shiro.max.session">1</replace>
+        <replace key="cache.kickout.timeout">3600000</replace>
+        <replace key="cache.phone.vcode.timeout">180000</replace>
+        <replace key="cache.user.name.timeout">3600000</replace>
+        <replace key="cache.email.vcode.timeout">180000</replace>
+
+    </config-file>
+    <config-file path="WEB-INF/classes/wopi.properties">
+        <replace key="wopi.oos.url"><![CDATA[http://office.search.com]]></replace>
+        <replace key="wopi.server.url"><![CDATA[http://192.168.70.110:9000/main]]></replace>
+        <replace key="wopi.server.cache.min">10</replace>
+        <replace key="wopi.server.cache.max">100</replace>
+        <replace key="wopi.server.cache.expires">30</replace>
+        <replace key="wopi.server.cache.scan">60</replace>
+    </config-file>
+    <config-file path="WEB-INF/classes/log4j2.xml">
+        <replace xpath="/Configuration/properties/property[@name='LOG_HOME']">D:/log4j2</replace>
+        <replace xpath="/Configuration/properties/property[@name='SERVER_NAME']">nodetest</replace>
+        <replace xpath="/Configuration/properties/property[@name='FILE_NAME']">log4j2</replace>
+        <replace xpath="//Console[@name='Console']/PatternLayout/@pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%-10t] %-5level %logger{36} %6L行 ---> %msg%n</replace>
+    </config-file>
+    <config-file path="WEB-INF/web.xml">
+        <replace xpath="//location">D:\\upload\\temp</replace>
+    </config-file>
+</portable-config>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.search</groupId>
+        <artifactId>common</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>cap</artifactId>
+    <packaging>pom</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+    <modules>
+        <module>Search-CloudAuditPlatform-Main</module>
+    </modules>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+                <app>/main</app>
+                <tomcat-domain>http://127.0.0.1:8080</tomcat-domain>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+                <app>/main</app>
+                <tomcat-domain>http://192.168.1.213:8081</tomcat-domain>
+                <!--<tomcat-domain>http://192.168.99.102:8081</tomcat-domain>-->
+            </properties>
+        </profile>
+        <profile>
+            <id>test1</id>
+            <properties>
+                <env>test1</env>
+                <app>/capmain</app>
+                <tomcat-domain>http://192.168.1.213:8081</tomcat-domain>
+                <!--<tomcat-domain>http://192.168.99.102:8081</tomcat-domain>-->
+            </properties>
+        </profile>
+        <profile>
+            <id>test2</id>
+            <properties>
+                <env>test2</env>
+                <app>/capmain</app>
+                <tomcat-domain>http://192.168.1.213:8082</tomcat-domain>
+                <!--<tomcat-domain>http://192.168.99.102:8082</tomcat-domain>-->
+            </properties>
+        </profile>
+    </profiles>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>/portable/**</exclude>
+                    <exclude>/config/config-self.properties</exclude>
+                    <exclude>/spring/spring-base-self.xml</exclude>
+                    <exclude>/xpath.xml</exclude>
+                    <exclude>/rebel.xml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>com.juvenxu.portable-config-maven-plugin</groupId>
+                <artifactId>portable-config-maven-plugin</artifactId>
+                <version>1.1.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>replace-package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <portableConfig>src/main/resources/portable/config-${env}.xml</portableConfig>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>${tomcat-domain}/admin/text</url>
+                    <server>server-tomcat</server>
+                    <path>${app}</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+        <!--
+        去到对应的项目下面执行：C:\opt\workspace\Search-CloudAuditPlatform\Search-CloudAuditPlatform-Main>
+           直接指定变量env的值
+           mvn clean package -Denv=dev
+           mvn clean package -Denv=test1
+           mvn clean package -Denv=test2
+           激活对应id的文件
+           mvn clean package -Pdev
+           mvn clean package -Ptest1
+           mvn clean package -Ptest2
+
+
+            mvn clean tomcat7:deploy -Ptest
+            mvn clean tomcat7:deploy -Ptest1
+            mvn clean tomcat7:deploy -Ptest2
+
+             mvn clean tomcat7:redeploy -Ptest1
+             mvn clean tomcat7:redeploy -Ptest2
+
+
+            C:\opt\workspace\Search-CloudAuditPlatform\Search-CloudAuditPlatform-Main>mvn tomcat7:redeploy -Ptest1
+            C:\opt\workspace\Search-CloudAuditPlatform\Search-CloudAuditPlatform-Main>mvn tomcat7:redeploy -Ptest2
+
+        -->

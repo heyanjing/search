@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+
+    <context:component-scan base-package="com.search" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+        <context:exclude-filter type="regex" expression="com\.search\.wopiserver\.api\.controller\..*"/>
+    </context:component-scan>
+
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="contentType" value="text/html; charset=UTF-8"/>
+        <property name="prefix" value="/WEB-INF/view"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--
+        格式转换服务功能相当于实体类上加@DateTimeFormat注解,
+        这样做的好处在于不用每个类的字段上面都加注解
+    -->
+    <bean id="formatService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="com.search.common.base.web.core.formatter.DateFormatter"/>
+                <bean class="com.search.common.base.web.core.formatter.LocalDateFormatter"/>
+                <bean class="com.search.common.base.web.core.formatter.LocalDateTimeFormatter"/>
+            </set>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven conversion-service="formatService">
+        <mvc:message-converters>
+            <!--java8 日期序列化-->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper" value="#{jsonConverter.mapper}"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+        <!--定义600秒为默认值  DeferredResult 可以通过setXX方法更改默认值,Callable  也可以封装成WebAsyncTask 并通过setXX方法更改-->
+        <mvc:async-support task-executor="threadPool" default-timeout="600000">
+            <mvc:callable-interceptors>
+                <bean class="com.search.common.base.web.core.async.GCallableInterceptor"/>
+            </mvc:callable-interceptors>
+            <mvc:deferred-result-interceptors>
+                <bean class="com.search.common.base.web.core.async.GDeferredResultInterceptor"/>
+            </mvc:deferred-result-interceptors>
+        </mvc:async-support>
+    </mvc:annotation-driven>
+
+    <!--异步任务的线程池-->
+    <bean id="threadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="5"/><!--最小线程数 -->
+        <property name="maxPoolSize" value="10"/><!--最大线程数 -->
+        <property name="queueCapacity" value="50"/><!--缓冲队列大小 -->
+        <property name="threadNamePrefix" value="search-"/><!--线程池中产生的线程名字前缀 -->
+        <property name="keepAliveSeconds" value="30"/><!--线程池中空闲线程的存活时间单位秒 -->
+    </bean>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
+    <!--<bean id="defaultHandler" class="com.search.cap.main.web.controller.demo.websocket.DefaultHandler"/>-->
+    <!--// HETODO: 2018/7/4 16:22 websocket的配置-->
+    <websocket:message-broker application-destination-prefix="/wsapp" user-destination-prefix="/wsuser">
+        <websocket:stomp-endpoint path="/wsendpoint" allowed-origins="*">
+            <!--<websocket:handshake-handler ref="defaultHandler"/>-->
+            <!--<websocket:handshake-interceptors>-->
+            <!--<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>-->
+            <!--</websocket:handshake-interceptors>-->
+            <websocket:sockjs/>
+        </websocket:stomp-endpoint>
+        <websocket:simple-broker prefix="/wstopic,/wsuser"/>
+    </websocket:message-broker>
+</beans>

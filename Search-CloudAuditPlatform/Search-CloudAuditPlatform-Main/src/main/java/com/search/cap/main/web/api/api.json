@@ -1,0 +1,47 @@
+{
+  "ApiController": {
+    "生成二维码": "/api/qr",
+    "发送手机验证码": "/api/sendPhoneVcode",
+    "获取手机验证码": "/api/getPhoneVcode",
+    "小文件上传": "/api/file/upload"
+  },
+  "ApiLoginController": {
+    "其他应用扫描后浏览器去手机端的首页": "/api/auth/{vcode}",
+    "手机端的浏览器首页授权登陆或系统的app扫描二维码后的登录": "/api/browser/login",
+    "pc端定时请求二维码对应的唯一码对应的用户信息": "/api/pc/getUserInfoBeanByVcode",
+    "手机端的首页登陆": "/api/login"
+  },
+  "ApiOrgController": {
+    "所有参建单位": "/api/org/findCjdw"
+  },
+  "ApiFunctionController": {
+    "所有的手机功能": "/api/function/list",
+    "保存快捷功能": "/api/quick/function/save",
+    "展示快捷功能": "/api/quick/function/list"
+  },
+  "ApiUserController": {
+    "给用户对应的手机号码发送验证码": "/api/user/sendPhoneVcode2User",
+    "获取用户信息": "/api/user/info",
+    "判断用户名唯一性是否有效": "/api/user/checkUserName",
+    "保存用户基本信息": "/api/user/saveInfo",
+    "修改密码": "/api/user/updatePassword",
+    "修改手机号码": "/api/user/updatePhone",
+    "发送邮箱激活验证邮件": "/api/user/sendUpdateEmailEmail",
+    "修改邮箱": "/api/user/updateEmail",
+    "用户注册": "/api/user/reg"
+  },
+  "ApiAuditPlanController": {
+    "当前用户能查看的所有审计计划": "/api/audit/plan/findCompletPlanLib",
+    "当前用户能查看的计划库Id 对应的审计计划": "/api/audit/plan/findCompletPlanLibByUserIdAndDataId",
+    "年度审计项目": "/api/audit/plan/findYearByAuditOrgId",
+    "委托审计项目": "/api/audit/plan/findyByAuditOrgId",
+    "所有审计非部门机构": "/api/audit/plan/findAuditNoDepartment",
+    "机构和部门的所有用户": "/api/audit/plan/findOrgUserByOrgId",
+    "第一步骤能编辑的字段": "/api/audit/plan/findByFunctionIdAndProcessDesignId",
+    "当前步骤能编辑的字段": "/api/audit/plan/findByFunctionIdAndProcessInstanceId",
+    "历史意见及所有的下一步骤": "/api/audit/plan/opinionAndNextSteps",
+    "当前步骤对应的所有操作人": "/api/audit/plan/operater",
+    "保存或提交": "/api/audit/plan/saveInfoBean",
+    "回退": "/api/audit/plan/updateRollbackStep"
+  }
+}

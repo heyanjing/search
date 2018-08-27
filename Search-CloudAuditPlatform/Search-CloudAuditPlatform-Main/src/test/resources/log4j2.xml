@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <properties>
+        <property name="LOG_HOME">D:/log4j/log4j2</property>
+        <property name="FILE_NAME">log4j2</property>
+    </properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%-10t] %-5level %logger{36} %6L行 ---> %msg%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=blue, DEBUG=white, TRACE=white}"/>
+        </Console>
+        <RollingRandomAccessFile name="FILE_NAME" fileName="${LOG_HOME}/${FILE_NAME}.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout charset="utf-8" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-10t] %-5level %logger{36} %6L行 ---> %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+        <!--<JDBC name="MySQLDatabase" tableName="test_log">-->
+        <!--<ConnectionFactory class="com.search.cap.main.common.log.ConnectionFactory" method="getConnection"/>-->
+        <!--<Column name="log_Id" pattern="%u"/>-->
+        <!--<Column name="log_date" isEventTimestamp="true"/>-->
+        <!--<Column name="log_logger" pattern="%logger"/>-->
+        <!--<Column name="log_level" pattern="%level"/>-->
+        <!--<Column name="log_message" pattern="%m"/>-->
+        <!--<Column name="log_exception" pattern="%throwable"/>-->
+        <!--</JDBC>-->
+    </Appenders>
+
+    <Loggers>
+        <logger name="jdbc.sqltiming" level="INFO"/>
+        <logger name="jdbc.resultsettable" level="INFO"/>
+        <logger name="jdbc.sqlonly" level="OFF"/>
+        <logger name="jdbc.audit" level="OFF"/>
+        <logger name="jdbc.resultset" level="OFF"/>
+        <logger name="jdbc.connection" level="OFF"/>
+
+        <!-- <AsyncLogger name="com.search" level="error" additivity="false">
+              <AppenderRef ref="FILE_NAME"/>
+          </AsyncLogger>-->
+        <!--<Logger name="com.search" level="error" additivity="false">-->
+        <!--<AppenderRef ref="FILE_NAME"/>-->
+        <!--</Logger>-->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <!--<AppenderRef ref="FILE_NAME"/>-->
+            <!--<AppenderRef ref="MySQLDatabase"/>-->
+        </Root>
+    </Loggers>
+
+</Configuration>

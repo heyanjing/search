@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <port>8080</port>
+    <hosts>
+        <host id="1">localhost</host>
+        <host id="2">localhost</host>
+    </hosts>
+    <hess>
+        <hes>
+            <he>he1</he>
+        </hes>
+    </hess>
+    <yanss>
+        <yans>
+            <he>he2</he>
+        </yans>
+    </yanss>
+    <mode value="debug"/>
+</server>
+        <!--
+        <config-file path="WEB-INF/classes/xpath.xml">
+            <replace xpath="/server/port">80</replace>
+            <replace xpath="//host[@id='1']">192.168.1.1</replace>
+            <replace xpath="//host[@id='2']">192.168.1.2</replace>
+            <replace xpath="/server/mode/@value">run</replace>
+            <replace xpath="//he">hex</replace>
+        </config-file>
+        -->
+
+        <!--
+        <?xml version="1.0" encoding="UTF-8"?>
+        <server>
+            <port>80</port>
+            <hosts>
+                <host id="1">192.168.1.1</host>
+                <host id="2">192.168.1.2</host>
+            </hosts>
+            <hess>
+                <hes>
+                    <he>hex</he>
+                </hes>
+            </hess>
+            <yanss>
+                <yans>
+                    <he>hex</he>
+                </yans>
+            </yanss>
+            <mode value="run"/>
+        </server>
+        -->

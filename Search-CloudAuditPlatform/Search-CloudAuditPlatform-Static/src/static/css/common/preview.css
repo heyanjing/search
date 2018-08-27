@@ -1,0 +1,25 @@
+.pic-btnbg{position: absolute; bottom:85px; left: 0; background:rgba(255,255,255,0.5); width: 100%;/*  box-shadow:1px 1px 5px #fff inset;  */height: 40px; z-index:1;}
+.pic-btn{display:inline-block; line-height:40px; font-size:18px; padding-left:10px; padding-right:10px; color:#808000;cursor: pointer;}
+.pic-btn:hover{color:#408aaa;}
+.pic-middle-left{position:absolute; top:0; left:0; height:100%;width:50px; }
+.pre-left{position:absolute; width:50px; top:40%; left:0; height:100px; line-height:100px; text-align:center; font-size:48px; cursor: pointer; color:#ccc;}
+.pre-left:hover{width:50px; height:100px;background:rgba(255,255,255,0.3);}
+.pic-middle-right{position:absolute; top:0; right: 0; height:100%;width:50px; }
+.pre-right{position:absolute; width:50px; top:40%; right:0; height:100px; line-height:100px; text-align:center; font-size:48px; cursor: pointer;color:#ccc;}
+.pre-right:hover{width:50px; height:100px;background:rgba(255,255,255,0.3);}
+.pic-text{position:absolute; left:0; bottom:0; background:rgba(160,160,160,0.5); width:100%; height:85px;}
+.pic-infotitle{width:50%; float:left; height:100%; text-align:left;padding-left:50px; margin-top:7px; color:#fff; position:absolute; overflow:hidden; display:block;}
+.pic-infobtn{float:right;padding-left:50px; height:100%; margin-right:100px;}
+.pic-infobtn .pre{width:30px; height:30px; position:relative; float:left; margin-top:40px; color:#ccc; cursor: pointer; font-size:16px;}
+.pic-infobtn .pre:hover{color:#f1f1f1}
+.pic-infobtn .next{width:30px; height:30px; position:relative; float:left; margin-top:40px;  color:#ccc; cursor: pointer;font-size:16px;}
+.pic-infobtn .next:hover{color:#f1f1f1;}
+.pic-infobtn .smalpic{width:560px; height:70px; position:relative; float:left;overflow:hidden;margin-top:15px;}
+.smallbox{width:10000px; position:relative;}
+.smallbox a{display:block; float:left; width:70px; text-align:center; position:relative; outline:none;}
+.smallbox a:hover{color:#000;}
+.smallbox a img{width:55px;height:55px; border:3px #999999 solid;position:relative; float:left;}
+.smallbox .active{border:3px solid #231ef1;}
+.smallbox a span{ position:absolute;width:18px; height:18px; top:0;right:0; background:#ffffff;margin-right:10px;}
+.smallbox a span i{font-size:14px; margin-top:3px;}
+.smallbox .selected{color:green;}

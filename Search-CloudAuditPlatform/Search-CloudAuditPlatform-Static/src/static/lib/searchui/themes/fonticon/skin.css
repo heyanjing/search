@@ -1,0 +1,1225 @@
+/*------------------------------ 公共样式 ------------------------------*/
+*{
+	margin:0; 
+	padding:0;
+}
+html{
+	height:100%;
+}
+body{
+	height:100%;
+	font-size:14px;
+	background:#FFF; 
+	font-family:"微软雅黑","宋体","黑体"; 
+	text-align:center;
+}
+a{ 
+	text-decoration:none;
+}
+ul,li{ 
+	list-style:none;
+}
+img{ 
+	border:none;
+}
+/*------------------------------ 公共样式 ------------------------------*/
+
+/*------------------------------ 数据表格样式 ------------------------------*/
+.search-datagrid{
+	overflow: hidden;
+}
+.search-datagrid div{
+	display:inline;
+}
+.search-datagrid .head-view table, .search-datagrid .body-view table{
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+}
+.search-datagrid .head-view td, .search-datagrid .body-view td{
+	height: 30px;
+	border: 1px solid #ccc;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 0 3px;
+	font-size:12px;
+	font-family: "宋体";
+}
+.search-datagrid .head-view{
+	overflow: hidden;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	display:block;
+}
+.search-datagrid .head-view thead{
+	background:#e8e8e8;
+}
+.search-datagrid .head-view thead td{
+	height: 28px;
+	cursor: default;
+	border-top: none;
+	font-size:14px;
+	font-family:"微软雅黑";
+}
+.search-datagrid .head-view thead .ascending{
+	width: 16px;
+	height: 16px;
+	margin-top: 3px;
+	margin-left: 5px;
+	background: url("images/sx.png") no-repeat;
+	display: inline-block;
+}
+.search-datagrid .head-view thead .descending{
+	width: 16px;
+	height: 16px;
+	margin-top: 3px;
+	margin-left: 5px;
+	background: url("images/jx.png") no-repeat;
+	display: inline-block;
+}
+.search-datagrid .scroll-view{
+	width: 16px;
+	float: left;
+	display: none;
+	background:#edf3f3;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.search-datagrid .body-view{
+	overflow: auto;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	display:block;
+}
+.search-datagrid .body-view table{
+	display:inline-table;
+}
+.search-datagrid .body-view tbody .alternating{
+	background: #f9f8f8;
+}
+.search-datagrid .body-view tbody .selected{
+	background:  #ecf7ff;
+	color: #000;
+}
+.search-datagrid .body-view tbody .hover{
+	background: #ecf7ff;
+	color: #000;
+}
+.search-datagrid .body-view-border{
+	border-bottom: 1px solid #ccc;
+}
+.search-datagrid .foot-view{
+	height: 40px;
+	line-height: 40px;
+	border-top: 1px solid #ccc;
+	display:block;
+}
+
+.search-datagrid .foot-view .record-container{
+	float: left;
+	width: 20%;
+	text-align:right;
+}
+.search-datagrid .foot-view .record-container .record-value{
+	color: red;
+	padding: 5px;
+}
+.search-datagrid .foot-view .chose-container{
+	float: left;
+	text-align: center;
+}
+.search-datagrid .foot-view .chose-container .chose-button{
+	cursor: pointer;
+	border:1px solid #ccc;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	color:#ccc;
+	margin:5px;
+	margin-left:10px;
+}
+.search-datagrid .foot-view .chose-container .chose-button-default{
+	cursor: default;
+	border:1px solid #ccc;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	
+	color:#ccc;
+}
+.search-datagrid .foot-view .chose-container .chose-button-hover{
+	color: #ccc;
+	background:#f5f5f5;
+}
+.search-datagrid .foot-view .chose-container .chose-current{
+	padding: 10px;
+}
+.search-datagrid .foot-view .go-container{
+	float: left;
+	width: 40%;
+	text-align: right;
+}
+.search-datagrid .foot-view .go-container .page-value{
+	color: blue;
+	padding: 7px;
+}
+.search-datagrid .foot-view .go-container .page-input{
+	width: 30px;
+	height: 14px;
+	line-height: 14px;
+	margin: 0 5px;
+}
+.search-datagrid .foot-view .go-container .go-button{
+	cursor: pointer;
+	width:20px;
+	height:20px;
+	border:1px solid #ccc;
+	line-height:20px;
+	color:#ccc;
+	margin: 5px;
+	padding: 2px 5px;
+}
+.search-datagrid .foot-view .go-container .go-button-default{
+	cursor: default;
+	width:20px;
+	height:20px;
+	border:1px solid #ccc;
+	line-height:20px;
+	color:#ccc;
+}
+.search-datagrid .foot-view .go-container .go-button-hover{
+	color: #ccc;
+	background: #f5f5f5;
+}
+/*------------------------------ 数据表格样式 ------------------------------*/
+
+/*------------------------------ 分组数据表格样式 ------------------------------*/
+.search-groupdatagrid{
+	overflow: hidden;
+}
+.search-groupdatagrid div{
+	display:inline;
+}
+.search-groupdatagrid .head-view table, .search-groupdatagrid .body-view table{
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+}
+.search-groupdatagrid .head-view{
+	overflow: hidden;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	display:block;
+}
+.search-groupdatagrid .head-view td{
+	height: 24px;
+	border: 1px solid #ccc;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 0 3px;
+}
+.search-groupdatagrid .head-view thead{
+	background:#e8e8e8;
+}
+.search-groupdatagrid .head-view thead td{
+	height: 28px;
+	cursor: default;
+	border-top: none;
+	font-family: "微软雅黑";
+	font-size:14px;
+}
+.search-groupdatagrid .head-view thead .ascending{
+	width: 16px;
+	height: 16px;
+	margin-top: 3px;
+	margin-left: 5px;
+	background: url("images/sx.png") no-repeat;
+	display: inline-block;
+}
+.search-groupdatagrid .head-view thead .descending{
+	width: 16px;
+	height: 16px;
+	margin-top: 3px;
+	margin-left: 5px;
+	background: url("images/jx.png") no-repeat;
+	display: inline-block;
+}
+.search-groupdatagrid .scroll-view{
+	width: 16px;
+	height: 28px;
+	float: left;
+	display: none;
+	background:#edf3f3;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.search-groupdatagrid .body-view{
+	overflow: auto;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	display:block;
+}
+.search-groupdatagrid .body-view td{
+	height: 30px;
+	border: 1px solid #eee;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 0 3px;
+	text-align:left;
+	font-size:12px;
+	font-family: "宋体";
+}
+.search-groupdatagrid .body-view tbody .alternating{
+	background:#f9f8f8;
+}
+.search-groupdatagrid .body-view tbody .selected{
+	background: #52a9e7;
+	color: #fff;
+}
+.search-groupdatagrid .body-view tbody .hover{
+	background: #52a9e7;
+	color: #fff;
+}
+.search-groupdatagrid .body-view-border{
+	border-bottom: 1px solid #ccc;
+}
+.search-groupdatagrid .body-view .placeholder{
+	height: 0;
+	border-top: none;
+	border-bottom: none;
+}
+.search-groupdatagrid .body-view .group{
+	cursor: pointer;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	height: 30px;
+}
+.search-groupdatagrid .body-view .group .default{
+	background: url("images/moren.png") no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+    vertical-align: middle;
+    padding-left: 4px;
+    margin-top: -4px;
+}
+.search-groupdatagrid .body-view .group .collapse{
+	background: url("images/sousuo.png") no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+    vertical-align: middle;
+    padding-left: 4px;
+    margin-top: -4px;
+}
+.search-groupdatagrid .body-view .group .expand{
+	background: url("images/zhankai.png") no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 4px;
+	margin-top: -4px;
+}
+.search-groupdatagrid .body-view .group .summary{
+	padding-left: 5px;
+	color: #000000;
+}
+.search-groupdatagrid .body-view .summary{
+	color: red;
+}
+.search-groupdatagrid .body-view .summary td{
+	
+}
+/*------------------------------ 分组数据表格样式 ------------------------------*/
+
+/*------------------------------ controls样式 ------------------------------*/
+.controls{
+	width:100%;
+	height:30px;
+	text-align:left;
+	font-size:18px;
+	font-family: "微软雅黑";
+	font-weight: bolder;
+}
+/*------------------------------ controls样式 ------------------------------*/
+
+/*------------------------------ 树形数据表格样式 ------------------------------*/
+.search-treedatagrid{
+	overflow: hidden;
+}
+.search-treedatagrid div{
+	display:inline;
+}
+.search-treedatagrid .head-view table, .search-treedatagrid .body-view table{
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+}
+.search-treedatagrid .head-view td, .search-treedatagrid .body-view td{
+	height: 30px;
+	border: 1px solid #ccc;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 0 3px;
+	font-size:12px;
+	font-family: "宋体";
+}
+.search-treedatagrid .head-view{
+	overflow: hidden;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	display:block;
+}
+.search-treedatagrid .head-view thead{
+	background:#e8e8e8;
+}
+.search-treedatagrid .head-view thead td{
+	height: 28px;
+	cursor: default;
+	border-top: none;
+	font-size:14px;
+	font-family: "微软雅黑";
+}
+.search-treedatagrid .head-view thead .ascending{
+	width: 16px;
+	height: 16px;
+	margin-top: 3px;
+	margin-left: 5px;
+	background: url("images/sx.png") no-repeat;
+	display: inline-block;
+}
+.search-treedatagrid .head-view thead .descending{
+	width: 16px;
+	height: 16px;
+	margin-top: 3px;
+	margin-left: 5px;
+	background: url("images/jx.png") no-repeat;
+	display: inline-block;
+}
+.search-treedatagrid .scroll-view{
+	width: 16px;
+	height: 28px;
+	float: left;
+	display: none;
+	background:#edf3f3;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.search-treedatagrid .body-view{
+	overflow: auto;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	display:block;
+}
+.search-treedatagrid .body-view tbody .alternating{
+	background: #f9f8f8;
+}
+.search-treedatagrid .body-view tbody .selected{
+	background: #ecf7ff;
+	color: #000;
+}
+.search-treedatagrid .body-view tbody .hover{
+	background: #ecf7ff;
+	color: #000;
+}
+.search-treedatagrid .body-view-border{
+	border-bottom: 1px solid #ccc;
+}
+.search-treedatagrid .body-view .default{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+    vertical-align: middle;
+    padding-left: 4px;
+    margin-top: -4px;
+}
+.search-treedatagrid .body-view .collapse{
+	background: url("images/sousuo.png") no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+    vertical-align: middle;
+    padding-left: 4px;
+    margin-top: -4px;
+}
+.search-treedatagrid .body-view .expand{
+	background: url("images/zhankai.png") no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 4px;
+	margin-top: -4px;
+}
+/*------------------------------ 树形数据表格样式 ------------------------------*/
+
+/*------------------------------ 点击遮罩按钮样式 ------------------------------*/
+.mui-content-padded button{
+	margin-top:10px;
+}
+/*------------------------------ 点击遮罩按钮样式 ------------------------------*/
+
+/*------------------------------ 遮罩样式 ------------------------------*/
+.search_message_container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.search_message_container .search_message_mask {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(238, 238, 238, 0.5);
+}
+/*------------------------------ 遮罩样式 ------------------------------*/
+
+/*------------------------------ 提示框样式 ------------------------------*/
+.search_message_container .search_prompt_box{
+	width:300px; 
+	height:150px;
+	border:1px #ccc solid;
+	position: fixed;
+	background:#ffffff;
+	border-radius:10px;
+	box-shadow:0 5px 15px rgba(0, 0, 0, 0.5)
+}
+.search_message_container .search_prompt_box h1{
+	width:290px; 
+	height:30px;
+	border-bottom:1px #ccc solid;
+	font-size:18px; 
+	font-family: "微软雅黑";
+	text-align:left;
+	line-height:30px;
+	padding-left:10px;
+	background:#e1e1e1;
+}
+.search_message_container .search_prompt_box h1 span{
+	background:url("images/del.png") no-repeat;
+	display:inline-block;
+	margin-left:270px;
+	margin-top:-27px;
+	cursor: pointer;
+}
+.search_message_container .search_prompt_box .search-body{
+	width:300px;
+	height:110px;
+	display:inline-block;
+	overflow:auto;
+}
+.search_message_container .search_prompt_box .search-body span{
+	display:inline-block;
+	margin-top:20px;
+}
+.search_message_container .search_prompt_box .search-body span p{
+	overflow:auto;
+	font-size:14px;
+	font-weight:normal;
+	width:280px;
+	word-break:break-all;
+}
+.search_message_container .search_prompt_box span .fa-exclamation-circle{
+	font-size:48px;
+	color:blue;
+	vertical-align:middle;
+}
+.search_message_container .search_prompt_box span .fa-exclamation-triangle{
+	font-size:48px;
+	color:orange;
+	vertical-align:middle;
+}
+.search_message_container .search_prompt_box span .fa-times-circle{
+	font-size:48px;
+	color:red;
+	vertical-align:middle;
+}
+.search_message_container .search_prompt_box span .fa-check-circle{
+	font-size:48px;
+	color:#008303;
+	vertical-align:middle;
+}
+/*.search_message_container .search_prompt_box span .info{
+	background:url("images/information.png") no-repeat;
+}
+.search_message_container .search_prompt_box span .warn{
+	background:url("images/warning.png") no-repeat;
+	
+}
+.search_message_container .search_prompt_box span .error{
+	background:url("images/error.png") no-repeat;
+}
+.search_message_container .search_prompt_box span .confirm{
+	background:url("images/help.png") no-repeat;
+}*/
+.search_message_container .search_loading_box{
+	position: fixed;
+	height:32px;
+}
+.search_message_container .search_loading_box span{
+	width:32px;
+	height:32px;
+	display:inline-block;
+}
+.search_message_container .search_loading_box span .search_loading{
+	width:32px; 
+	height:32px;
+	vertical-align:middle;
+}
+.search_message_container .search_loading_box p{
+	width:150px;
+	line-height:32px;
+}
+.search_message_container .search_loading_box span .loading{
+	background:url("images/loading.gif") no-repeat;
+	float:left;
+}
+.search_message_container .search_prompt_box input[type="button"]{
+	background:-moz-linear-gradient(top,#ffffff,#e1e1e1);/*火狐*/
+	width:60px; 
+	padding:3px;
+	margin-top:5px;
+	border:1px #ccc solid; 
+	cursor: pointer;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+/*------------------------------ 提示框样式 ------------------------------*/
+
+/*------------------------------下拉列表样式------------------------------*/
+.checkbox{
+	width:300px;
+	float:left;
+}
+.select_province span{
+	width:100%;
+	border:1px solid #ccc;
+	background:#FFF url("images/province_sprites.png") no-repeat;
+	display:block;
+	float:left;
+	cursor:pointer;
+	text-align:left;
+}
+.select_province input{
+	border:none!important;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+	display:inline-block;
+	margin-left:4px;
+}
+.select{
+	width:200px;
+	background:#f5f5f5;
+	border:1px solid Silver;
+	float:left;
+	overflow:auto;
+	overflow-x:hidden;
+	position:absolute;
+	display:none;
+	z-index:999;
+	border-radius:5px;
+}
+.select_tree{
+	width:100%;
+	height:100%;
+	position: relative;
+	/*overflow:auto;*/
+	font-size:12px;
+}
+.select_province ul{
+	min-height:31px;
+	/*overflow:auto;*/
+	background:#FFF;
+	clear:both;
+	position:relative;
+	z-index:999;
+}
+.select_province ul li{
+	height:30px;
+	line-height:30px;
+	border-bottom:1px solid #dfdfdf;
+	text-align:left;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.select_province ul li img{
+	vertical-align: middle;
+	background-image:url("images/iconUncheckAll.gif");
+	width:16px;
+	height:16px;
+	display:inline-block;
+	margin-left:10px;
+}
+.provinceCheckAll{
+	background-image:url("images/iconCheckAll.gif")!important;
+}
+
+ul,li{
+	list-style:none;
+}
+div,ul,li{
+	margin:0;
+	padding:0;
+}
+a{
+	color:#000;
+	text-decoration:none;
+}
+a:hover{
+	color:#C00;
+}
+/*.show{
+	display:none;
+}*/
+/*------------------------------下拉列表样式------------------------------*/
+
+/*------------------------------树形菜单样式------------------------------*/
+.treebox{
+	height:242px;
+	background:#f5f5f5;
+	border:1px solid Silver;
+	float:left;
+	margin-top:8px;
+	margin-left:20px;
+}
+.treebox_tree{
+	width:100%;
+	height:100%;
+	top:0;
+	position: relative;
+	overflow:auto;
+	font-size:12px;
+}
+.standartTreeImagefolder{
+	width:18px;
+	height:18px;
+	overflow:hidden;
+	border:0;
+	margin:0;
+	padding:0;
+	font-size:1px;
+}
+/*---------------------菜单图标样式----------------------------------*/
+
+/*一级菜单下只有一条数据时的ICON*/
+.standartTreeImageLenone span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/line0.gif");
+}
+/*一级菜单下只有一条数据时的ICON*/
+
+/*一级菜单下第一个没有子级时的ICON*/
+.standartTreeImageLevel span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/line4.gif");
+}
+/*一级菜单下第一个没有子级时的ICON*/
+
+/*一级菜单下最后一个没有子级时的ICON*/
+.standartTreeImageLeout span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/line2.gif");
+}
+/*一级菜单下最后一个没有子级时的ICON*/
+
+/*一级菜单下第一个有二级菜单时的ICON*/
+.standartTreeImageerjiLevel span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/plus4.gif");
+}
+/*一级菜单下第一个有二级菜单时的ICON*/
+
+/*一级菜单下第一个有二级菜单展开时的ICON*/
+.standartTreeImageerjiLeout span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/minus4.gif");
+}
+/*一级菜单下第一个有二级菜单展开时的ICON*/
+
+/*一级菜单下最后一个有二级菜单时的ICON*/
+.standartTreeImageerjiLenone span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/plus2.gif");
+}
+/*一级菜单下最后一个有二级菜单时的ICON*/
+
+/*一级菜单下最后一个有二级菜单展开时的ICON*/
+.standartTreeImageerjiunwind span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/minus2.gif");
+}
+/*一级菜单下最后一个有二级菜单展开时的ICON*/
+
+/*一级菜单下只有一个节点时收缩的ICON*/
+.standartTreeImagefirstshrink span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/plus5.gif");
+}
+/*一级菜单下只有一个节点时收缩的ICON*/
+
+/*一级菜单下只有一个节点时展开的ICON*/
+.standartTreeImagefirstunwind span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/minus5.gif");
+}
+/*一级菜单下只有一个节点时展开的ICON*/
+
+/*二级菜单下有三级菜单时的ICON*/
+.standartTreeImageplus span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/plus3.gif");
+}
+/*二级菜单下有三级菜单时的ICON*/
+
+/*二级菜单下有三级菜单展开时的ICON*/
+.standartTreeImagefolder span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/minus3.gif");
+}
+/*二级菜单下有三级菜单展开时的ICON*/
+
+/*三级菜单下没有子级时的ICON*/
+.standartTreeImageLeveline span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/line3.gif");
+}
+/*三级菜单下没有子级时的ICON*/
+
+.line{
+	background-image:url("images/line1.gif"); 
+	background-repeat: repeat-y;
+}
+ 
+.standartTreeImagelUncheckAll span{
+	vertical-align: middle;
+	width:16px;
+	height:16px;
+	display:inline-block;
+	background:url("images/iconUncheckAll.gif");
+}
+.standartTreeImagelCheckAll span{
+	vertical-align: middle;
+	width:16px;
+	height:16px;
+	display:inline-block;
+	background:url("images/iconCheckAll.gif");
+}
+
+.standartTreeImagefolderOpen span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/folderOpen.gif");
+	border: none;
+}
+.standartTreeImagefolderClosed span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/folderClosed.gif");
+}
+.standartTreeImageLeaf span{
+	vertical-align: middle;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	background:url("images/iconText.gif");
+}
+/*---------------------菜单图标样式----------------------------------*/
+
+.standartTreeRow{
+	width:100%;
+	cursor: pointer;
+	font-size:12px;
+	text-align:left;
+}
+.selectedTreeRow{
+	width:auto;
+	display:inline-block;
+	padding-left:5px;
+	padding-right:5px;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+/*------------------------------树形菜单样式------------------------------*/
+
+/*------------------------------下拉树形菜单样式------------------------------*/
+.treeselect_box{
+	width:300px;
+	float:left;
+}
+.treeselect_title{
+	width:280px;
+	position:relative;
+}
+.treeselect_title span{
+	width:276px;
+	border:1px solid #ccc;
+	background:#FFF url("images/province_sprites.png") no-repeat 265px -2px;
+	display:block;
+	float:left;
+	padding-left:4px;
+	cursor:pointer;
+	text-align:left;
+}
+.treeselect{
+	width:280px;
+	background:#f5f5f5;
+	border:1px solid Silver;
+	float:left;
+	overflow:auto;
+	position:absolute;
+	display:none;
+	z-index:999;
+	border-radius:5px;
+}
+.treeselect_tree{
+	width:100%;
+	height:100%;
+	position: relative;
+	/*overflow:auto;*/
+	font-size:12px;
+}
+/*.search-treeselect{
+	display:inline-block;
+}
+.search-select{
+	display:inline-block;
+}*/
+/*------------------------------下拉树形菜单样式------------------------------*/
+
+/*------------------------------单行文本样式------------------------------*/
+.search-text{
+	border:1px solid #ccc;
+}
+
+/*------------------------------单行文本样式------------------------------*/
+
+/*------------------------------多行文本样式------------------------------*/
+.search-area{
+	resize:none;
+	border:1px solid #ccc;
+}
+/*------------------------------多行文本样式------------------------------*/
+
+/*------------------------------密码框样式------------------------------*/
+.search-password{
+	border:1px solid #ccc;
+}
+/*------------------------------密码框样式------------------------------*/
+
+/*------------------------------单选按扭样式------------------------------*/
+.search-textradio lable{
+	float:left;
+	text-align:left;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.search-radio{
+	/*margin-left:10px;*/
+	float:left;
+	/* margin:3px; */
+	border:none!important;
+}
+/*------------------------------单选按扭样式------------------------------*/
+
+/*------------------------------复选框样式------------------------------*/
+.search-textcheck lable{
+	float:left;
+	text-align:left;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.search-check{
+	margin-top:3px;
+}
+/*------------------------------复选框样式------------------------------*/
+
+/*------------------------------日期选取器样式------------------------------*/
+.search-datepicker .search-text {
+	border:1px solid #ccc;
+}
+/*------------------------------日期选取器样式------------------------------*/
+
+/*------------------------------弹框样式------------------------------*/
+.search_dialog_container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.search_dialog_container .search_dialog_mask {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(202, 202, 202, 0.5);
+}
+.search_dialog_container .search_dialog_box {
+  position: absolute;
+  background:#ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border-radius:10px;
+}
+.search_dialog_container .search_dialog_box.noradius {
+  border-radius:0;
+}
+.search_dialog_container .search_dialog_box .title {
+  position: relative;
+  width: 100%;
+  height:40px;
+  border-bottom:1px #ccc solid;
+  cursor: move;
+}
+.search_dialog_container .search_dialog_box .title h1 {
+  font-size:16px;
+  text-align:left;
+  padding-left: 14px;
+  line-height:40px;
+  color:#000;
+  font-famliy:"宋体";
+  font-weight:normal;
+}
+.search_dialog_container .search_dialog_box .title .button{
+  font-size:16px;
+  display:inline-block;
+  cursor: pointer;
+  margin-top:-28px;
+  float:right;
+  color:#ccc;
+}
+.search_dialog_container .search_dialog_box .title .button.size{
+  margin-right:33px;
+}
+.search_dialog_container .search_dialog_box .title .button.close{
+  margin-right:10px;
+}
+.search_dialog_container .search_dialog_box .cont {
+  background-color: #FFF;
+  border:0;
+  border-radius:0 0 10px 10px;
+}
+.search_dialog_container .search_dialog_box .cont.noradius {
+	border-radius:0;
+}
+/*------------------------------弹框框样式------------------------------*/
+
+/*------------------------------验证不通过样式------------------------------*/
+.validate-no{
+	border:1px solid red!important;
+}
+/*------------------------------验证不通过样式------------------------------*/
+
+/*------------------------------按钮样式------------------------------*/
+
+.search-button{
+	background:#28a745; 
+	border-color:#28a745; 
+	border-radius:5px; 
+	font-size:18px; 
+	font-family:"黑体"; 
+	color:#ffffff; 
+	font-weight:400;
+	cursor: pointer;
+	display:inline-block;
+	text-align:center;
+	padding: 0 10px;
+}
+.search-button:hover{
+	background:#218838;
+	border-color:#1e7e34;
+}
+
+.search-button.orange{
+	background:#ffc107;
+	border-color:#ffc107;
+}
+.search-button.orange:hover{
+	background:#e0a800;
+	border-color:#d39e00;
+}
+.search-button.black{
+	background:#343a40; 
+	border-color:#343a40; 
+}
+.search-button.black:hover{
+	background:#23272b;
+	border-color:#1d2124;
+}
+.search-button.blue{
+	background:#17a2b8; 
+	border-color:#17a2b8;
+}
+
+.search-button.blue:hover{
+	background:#138496;
+	border-color:#117a8b;
+}
+
+.search-button.disabled{
+	background:#e1e1e1;
+	border-color:#e1e1e1;
+	cursor: default;
+}
+
+.search-button.disabled:hover{
+	background:#e1e1e1;
+	border-color:#e1e1e1;
+}
+
+/*------------------------------按钮样式------------------------------*/
+
+/*------------------------------标签样式------------------------------*/
+
+.search-label .text {
+	color: #9f9f9f;
+	text-align: left;
+	background: #f9f9f9;
+	display: inline-block;
+}
+
+.search-label .text.single {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.search-label .text.multiple {
+	overflow: auto;
+}
+
+/*------------------------------标签样式------------------------------*/
+
+/*----------------------------- 上下文菜单样式 -----------------------------*/
+.search-contextmenu {
+	position: absolute;
+}
+
+.search-contextmenu .panel {
+	width: 200px;
+	height: 0px;
+	overflow: auto;
+	background: #fff;
+	border: 1px solid #ccc;
+	box-shadow: -3px 3px 8px 0 #ccc;
+}
+
+.search-contextmenu .panel ul .item {
+	width: 100%;
+	line-height: 30px;
+	text-align: left;
+}
+
+.search-contextmenu .panel ul .item.enable {
+	color: #000;
+	cursor: pointer;
+}
+
+.search-contextmenu .panel ul .item.enable.hover {
+	color: #fff;
+	background: #1dabe9;
+}
+
+.search-contextmenu .panel ul .item.disable {
+	color: #ccc;
+	cursor: default;
+}
+
+.search-contextmenu .panel ul .item.disable.hover {
+	background: #f1f1f1;
+}
+
+.search-contextmenu .panel ul .item.separater {
+	line-height: 1px;
+}
+
+.search-contextmenu .panel ul li i {
+	width: 14px;
+	height: 14px;
+	padding: 0 15px;
+	display: inline-block;
+}
+
+.search-contextmenu .panel ul li .menu {
+	width: 130px;
+	height: 30px;
+	display: inline-block;
+	vertical-align: middle;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+
+.search-contextmenu .panel ul li .separater {
+	width: 145px;
+	margin-left: 44px;
+	display: inline-block;
+	border-top: 1px #ccc solid;
+}
+
+.search-contextmenu .panel ul li .separater.narrow {
+	width: 130px;
+}
+/*----------------------------- 上下文菜单样式 -----------------------------*/

@@ -1,0 +1,13 @@
+.search_message_container .search_message_mask {
+	background-color: #eeeeee;
+	filter: alpha(opacity=50);
+}
+
+.search_dialog_container .search_dialog_mask {
+	background-color: #cacaca;
+	filter: alpha(opacity=50);
+}
+
+.search_dialog_container .search_dialog_box {
+	border:1px #ccc solid;
+}

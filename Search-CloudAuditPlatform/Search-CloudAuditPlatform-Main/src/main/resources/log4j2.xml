@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" monitorInterval="30"><!--monitorInterval间隔多久自动修改为最新配置-->
+    <properties>
+        <property name="LOG_HOME">D:/log4j2</property>
+        <property name="SERVER_NAME">nodedev</property>
+        <property name="FILE_NAME">log4j2</property>
+    </properties>
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--<PatternLayout pattern="%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%-10t] %-5level %logger{36} %6L行 -&ndash;&gt; %msg%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=blue, DEBUG=white, TRACE=white}"/>-->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-10t] %-5level %logger{36} %6L行 ---> %msg%n"/>
+            <!--<MarkerFilter marker="dblog" onMatch="ACCEPT" onMismatch="DENY"/>-->
+        </Console>
+
+        <RollingRandomAccessFile name="FILE_NAME" fileName="${LOG_HOME}/${SERVER_NAME}/${FILE_NAME}.log" filePattern="${LOG_HOME}/${SERVER_NAME}/$${date:yyyy-MM}/%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout charset="utf-8" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-10t] %-5level %logger{36} %6L行 ---> %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+        <!--<JDBC name="databaseAppender" tableName="logs">
+            <ConnectionFactory class="com.search.cap.main.common.log.LoggerConnectionFactory" method="getDatabaseConnection"/>
+            <Column name="thread_name" pattern="%t"/>
+            <Column name="class_name" pattern="%C"/>
+            <Column name="method_name" pattern="%method"/>
+            <Column name="beginTime" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}"/>
+            <Column name="logger_level" pattern="%level"/>
+            <Column name="logger_name" pattern="%c"/>
+            <Column name="logger_message" pattern="%m"/>
+            <Column name="logger_throwable" pattern="%throwable{3}"/>
+            <Column name="createTime" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}"/>
+        </JDBC>-->
+        <!--
+         能成功
+        <JDBC name="MySQLDatabase" tableName="test_log">
+             <ConnectionFactory class="com.search.cap.main.common.log.ConnectionFactory" method="getConnection"/>
+             <Column name="log_Id" pattern="%u"/>
+             <Column name="log_date" isEventTimestamp="true"/>
+             <Column name="log_logger" pattern="%logger"/>
+             <Column name="log_level" pattern="%level"/>
+             <Column name="log_message" pattern="%m"/>
+             <Column name="log_exception" pattern="%throwable "/>
+         </JDBC>-->
+    </Appenders>
+    <Loggers>
+        <!-- 第三方日志系统
+        <logger name="org.springframework.core" level="info"/>
+        <logger name="org.springframework.beans" level="info"/>
+        <logger name="org.springframework.context" level="info"/>
+        <logger name="org.springframework.web" level="info"/>
+        <logger name="org.apache.http" level="warn"/>
+        <logger name="org.springframework.data.redis" level="debug"/>
+        <logger name="redis.clients" level="debug"/>
+        -->
+
+        <logger name="jdbc.sqltiming" level="INFO"/>
+        <logger name="jdbc.resultsettable" level="INFO"/>
+        <logger name="jdbc.sqlonly" level="OFF"/>
+        <logger name="jdbc.audit" level="OFF"/>
+        <logger name="jdbc.resultset" level="OFF"/>
+        <logger name="jdbc.connection" level="OFF"/>
+
+        <!--输出log4jdbc的debug信息
+        <logger name="log4jdbc.debug" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        -->
+
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FILE_NAME"/>
+            <!-- <AppenderRef ref="MySQLDatabase"/>-->
+        </Root>
+    </Loggers>
+</Configuration>

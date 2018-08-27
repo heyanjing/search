@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--
+        测试连接是否关闭
+    -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver.class}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialPoolSize" value="10"/>
+        <property name="minPoolSize" value="10"/>
+        <property name="maxPoolSize" value="200"/>
+        <property name="maxIdleTime" value="10"/>
+        <property name="checkoutTimeout" value="5000"/>
+        <property name="acquireIncrement" value="5"/>
+        <property name="idleConnectionTestPeriod" value="10"/>
+        <property name="maxStatements" value="500"/>
+        <property name="maxStatementsPerConnection" value="30"/>
+    </bean>
+    <!--测试qq邮箱和163邮箱-->
+    <bean id="qqMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${qq.mail.smtp.host}"/>
+        <property name="port" value="${qq.mail.smtp.port}"/>
+        <property name="username" value="${qq.mail.smtp.username}"/>
+        <property name="password" value="${qq.mail.smtp.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.timeout">${qq.mail.smtp.timeout}</prop>
+                <prop key="mail.smtp.auth">${qq.mail.smtp.auth}</prop>
+                <prop key="mail.smtp.ssl.enable">${qq.mail.smtp.ssl.enable}</prop>
+                <!--<prop key="mail.smtp.socketFactory.port">${qq.mail.smtp.port}</prop>-->
+                <!--<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>-->
+                <!--<prop key="mail.smtp.socketFactory.fallback">false</prop>-->
+            </props>
+        </property>
+    </bean>
+    <bean id="m163MailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${m163.mail.smtp.host}"/>
+        <property name="port" value="${m163.mail.smtp.port}"/>
+        <property name="username" value="${m163.mail.smtp.username}"/>
+        <property name="password" value="${m163.mail.smtp.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.timeout">${m163.mail.smtp.timeout}</prop>
+                <prop key="mail.smtp.auth">${m163.mail.smtp.auth}</prop>
+                <prop key="mail.smtp.starttls.enable">${m163.mail.smtp.starttls.enable}</prop>
+                <!--<prop key="mail.transport.protocol">${m163.mail.transport.protocol}</prop>-->
+                <!--<prop key="mail.debug">true</prop>-->
+            </props>
+        </property>
+    </bean>
+</beans>

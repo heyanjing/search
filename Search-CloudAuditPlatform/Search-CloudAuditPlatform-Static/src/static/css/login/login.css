@@ -1,0 +1,39 @@
+/* CSS Document */
+*{margin:0; padding:0;}
+html{height:100%;}
+body{font-size:12px; font-family:"宋体","微软雅黑"; width:100%; height:100%;}
+a{ text-decoration:none;}
+img{ border:none;}
+ul,li{ list-style:none;}
+
+.wrap{background:url(../../img/login/login-bg.jpg);box-sizing: border-box;height: 100%;width:100%;background-size:100% 100%;position:  relative;filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";}
+.wrap-logo{width:100%; margin:0 auto;}
+.wrap-logo h1{font-size:32px;font-weight:900; font-family:"黑体"; padding:60px 60px 0 60px; text-shadow:0 1px 4px rgba(255,255,255,.1);color:#0161a4; vertical-align:middle; text-align:left; margin:0;}
+.wrap-logo img{display:inline-block; vertical-align:middle;}
+
+.wrap-login{width:100%; margin:0 auto; text-align:center;padding-top:10%; padding-left:15%; position:fixed;}
+.wrap-login h1{font-size:36px;color:#0161a4; font-weight:normal; font-family:"黑体"; }
+
+.login-from{ width:380px; height:auto; background:rgba(255,255,255,0.5); border-radius:5px; margin:0 auto; margin-top:20px; box-shadow:0 2px 4px #ccc; }
+.login-from .form-tab{ width:380px; height:52px;font-family:"黑体";}
+.login-from .tab-li{ float:left; width:50%; height:50px;}
+.login-from .tab-li a{ position:relative; display:block; text-align:center; height:50px; line-height:52px; font-size:14px; font-family:"微软雅黑"; color:#000; text-decoration:none;}
+.login-from .tab-li.cur{ border-bottom-color:#d00;color: #76b9f7;background:rgba(255,254,254,0.8);border-radius: 5px 0 0 0;}
+.login-from .tab-li.cur a{ color:#76b9f7;}
+.login-from .change-login  i{padding-right:10px;}
+.login-from input{width:250px; height:35px; border:1px #ccc solid; border-radius:5px;padding-left:35px;}
+.fa-user-o{position: absolute;left: 0;z-index:5;background-repeat: no-repeat;background-position: 0px 0px; font-size:18px!important;
+color:#a5a5a5!important;padding-left:10px; line-height:40px; }
+.fa-lock{position: absolute;left: 0;z-index:5;background-repeat: no-repeat;background-position: 0px 0px; font-size:18px!important;
+color:#a5a5a5!important;padding-left:10px; line-height:40px; }
+.fa-pencil-square-o{position: absolute;left: 0;z-index:5;background-repeat: no-repeat;background-position: 0px 0px;font-size:18px!important;
+color:#a5a5a5!important;padding-left:10px; line-height:40px; }
+
+.login-from .login-user{ width:380px; height:auto; padding:38px 0 0 0;}
+.login-from .login-normal{ width:380px; padding-top:10px;}
+.login-from .login-normal,.form-box .login-partner{ display:none;position:relative; width:280px; margin:0 auto; }
+.clearfix{position: relative;width: 280px; margin:0 auto;padding-top:25px;}
+.login-link{padding:25px 0 25px 0; width:280px; margin:0 auto; }
+
+.login-erweima img{width:200px; height:200px; margin:20px 0 10px 0;}
+.login-erweima p{display:block;}

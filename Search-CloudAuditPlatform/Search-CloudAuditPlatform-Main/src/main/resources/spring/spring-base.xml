@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:property-placeholder location="classpath*:config/config*.properties"/>
+
+    <context:component-scan base-package="com.search">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <bean id="dataSource2" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="driverClassName" value="${jdbc.driver.class}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒 -->
+        <property name="connectionTimeout" value="${jdbc.connection.timeout}"/>
+        <!-- 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟 -->
+        <property name="idleTimeout" value="${jdbc.idle.timeout}"/>
+        <!-- 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';） -->
+        <property name="maxLifetime" value="${jdbc.max.life.time}"/>
+        <!-- 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count) -->
+        <property name="maximumPoolSize" value="${jdbc.maximum.pool.size}"/>
+        <property name="minimumIdle" value="${jdbc.minimum.idle}"/>
+    </bean>
+
+
+    <!-- 配置 JPA 的 EntityManagerFactory -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource2"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="packagesToScan" value="com.search.cap.main.entity"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.physical_naming_strategy">${hibernate.physical_naming_strategy}</prop>
+                <!-- hibernate 基本属性 -->
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <!-- // HEINFO:2018/2/10 15:15 hibernate实体自动生成表 必要时开启
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                -->
+                <!--二级缓存 一般不开启
+                <prop key="hibernate.cache.use_second_level_cache">false</prop>
+                <prop key="cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+                 -->
+            </props>
+        </property>
+    </bean>
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <!-- 配置 SpringData -->
+    <jpa:repositories base-package="com.search.cap.main.web.dao" entity-manager-factory-ref="entityManagerFactory" factory-class="com.search.common.base.jpa.repo.BaseRepoFactoryBean"/>
+    <!-- 注解方式配置事物   底层有个别用到-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--配置事务切面 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true" timeout="300"/>
+            <tx:method name="find*" read-only="true" timeout="300"/>
+            <tx:method name="list*" read-only="true" timeout="300"/>
+            <tx:method name="page*" read-only="true" timeout="300"/>
+            <!-- 所有非上面方法开头的方法在同一事务里 -->
+            <tx:method name="*" propagation="REQUIRED" timeout="300" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--配置申明式事务 -->
+    <aop:config>
+        <aop:pointcut id="aopPointcut" expression="execution(* com.search.cap.main.web.service..*.*(..))"/>
+        <aop:advisor pointcut-ref="aopPointcut" advice-ref="txAdvice"/>
+    </aop:config>
+
+</beans>

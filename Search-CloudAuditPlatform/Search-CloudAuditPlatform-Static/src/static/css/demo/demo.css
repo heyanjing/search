@@ -1,0 +1,68 @@
+/* CSS Document */
+
+* {margin: 0;padding: 0;font-size: 12px;}
+html, body {height: 100%;width: 100%;}
+#alert {z-index: 2;width: 598px;height: auto;/*border-radius: 6px;border: 1px solid rgba(0,0,0,.2);box-shadow: 0 5px 15px rgba(0,0,0,.5);background: #fff;*/z-index: 1000;position: absolute;left: 50%;
+top: 10%;margin-left: -299px;display: none;}
+.model-head {padding: 10px;color: #73879C;border-bottom: 1px solid #e5e5e5;}
+.close {padding: 0;cursor: pointer;background: 0 0;border: 0;float: right;font-size: 14px !important;font-weight: 700;text-shadow: 0 1px 0 #fff;opacity: 0.4;margin-top: 5px;}
+#close:hover {cursor: pointer;color: #000;}
+#mask {position: absolute;top: 0;left: 0;height: 100%;width: 100%;background: #000;opacity: 0.3;display: none;z-index: 1;}
+.model-content {position: relative; height:100%;}
+.main{height:100%;}
+.row{height:100%;}
+.model-foot {padding: 15px;text-align: right;}
+
+.flow {width: 100%;height: 50px;background:#efefef;position: relative; border-bottom:1px solid #cccccc;}
+.flowList {float: left;height: 2px;}
+.flowListBox {position: absolute;width: 100%;left: 0;top: 10px;}
+.flowListBox .flowList {float: left;text-align: right;}
+.flowListBox .flowList em {display: inline-block;width: 30px;height: 30px;-moz-border-radius: 100%;-webkit-border-radius: 100%;border-radius: 100%;background: #ccc;
+text-align: center; line-height: 30px;font-style: normal;font-weight: bold;vertical-align: middle;color: #fff;box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.56);cursor:pointer;}
+.flowListBox .flowList strong {display: inline-block;height: 30px;line-height: 30px;font-weight: 400;cursor:pointer;}
+.flowListBox .for-cur em{width: 30px;height: 30px;font-size: 14px;line-height: 30px;}
+
+.foot-btn { width:100%; height:58px; border-top:1px solid #ddd;bottom:0;line-height:58px;text-align:center; position:absolute; box-sizing:border-box}
+.btn {display: inline-block;padding: 4px 18px;margin-bottom: 0;font-size: 14px;font-weight: normal;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;
+-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 5px;
+-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none; margin:0 5px;}
+.btn-success{color:#fff; background-color:#5cb85c;}
+.btn-success:hover {color: #fff;background-color: #449d44;border-color: #398439;}
+.btn-primary {color: #fff;background-color: #337ab7;border-color: #2e6da4;margin-left:10px;}
+.btn-primary:hover {color: #fff;background-color: #286090; border-color: #204d74;}
+.btn-default {color: #333;background-color: #fff;border-color: #ccc;}
+.btn-default:hover {color: #333;background-color: #e6e6e6;border-color: #adadad;}
+.disabled{background:#e4e4e4; border:#e4e4e4; cursor: default;}
+.disabled:hover{background:#e4e4e4;}
+
+.successs {text-align: center;padding: 20px 0 60px 0;}
+.successs h3 {padding: 20px;font-size: 25px;}
+.contentList{display:none;}
+
+.mask{background:#ffffff!important;}
+.mode2-head {color: #73879C;}
+.moda2-title{font-size:18px; border-bottom:5px solid lightseagreen; text-align:left; padding:10px;}
+.moda2-title i{padding-right:5px; font-size:24px; color:lightseagreen; vertical-align: middle; }
+.mode2-content {position:absolute;top:50px; bottom:0; height:auto; width:100%;}
+.mode2-content table input{border-radius:5px; line-height:30px;}
+.select_province span{border-radius:5px;}
+.checkbox{position:relative;}
+
+.search-textbox{float:left;border-radius:5px;line-height:30px;}
+.search-text{border-radius:5px;line-height:30px;}
+.treeselect_title span{border-radius:5px;}
+.search-area{border-radius:5px;line-height:30px;}
+.select{margin-top:33px;}
+.treeselect{margin-top:33px;}
+.search-radio{margin:8px;}
+.search-password{border-radius:5px;}
+
+#qua tr td{border:1px #ccc solid;}
+#qua .search-area{border:none;float:left;}
+#qua .select_province span{border:none;}
+#qua .queueList1{margin:8px;}
+.qua-add{width:80px; height:30px; margin-top:10px; background:#DEB948; border:#DEB948; color:#fff; border-radius:5px; cursor: pointer;}
+.qua-add:hover{background:#e7cb78; border:#e7cb78;}
+
+
+
